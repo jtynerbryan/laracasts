@@ -26,28 +26,34 @@ class Business
         $this->staff->add($person);
     }
 
-    public function getStaff()
+    public function getStaffMembers()
     {
-        return $this->staff->getMembers();
+        return $this->staff->members();
     }
 }
 
 class Staff
 {
-    protected $members = [];
+    protected $members;
+
+    public function __construct($members = [])
+    {
+        $this->members = $members;
+    }
 
     public function add(Person $person)
     {
         $this->members[] = $person;
     }
 
-    public function getMembers()
+    public function members()
     {
         return $this->members;
     }
 }
 
 $jesse = new Person('Jesse Tyner-Bryan');
-$laracasts = new Business('Laracasts', new Staff());
-$laracasts->hire($jesse);
-var_dump($laracasts->getStaff());
+$staff = new Staff([$jesse]);
+$laracasts = new Business('Laracasts', $staff);
+$laracasts->hire(new Person('Jane Doe'));
+var_dump($laracasts->getStaffMembers());
