@@ -9,10 +9,7 @@
     <script src="main.js"></script>
 </head>
 <body>
-     <ul>
-        @foreach ($tasks as $task)
-            <li>{{$task}}</li>
-        @endforeach
-     </ul>
+    <h1>{{ $task->body }}</h1>
+    <h2>completed: {{ $task->completed }}</h2>
 </body>
 </html>

@@ -11,10 +11,17 @@
 |
  */
 
-Route::get('/', function () {
-    return view('welcome');
+use App\Task;
+
+Route::get('/tasks', function () {
+    $tasks = Task::all();
+
+    return view('tasks.index', compact('tasks'));
 });
 
-Route::get('/about', function () {
-    return view('about');
+Route::get('/tasks/{id}', function ($id) {
+
+    $task = Task::find($id);
+
+    return view('tasks.show', compact('task'));
 });
